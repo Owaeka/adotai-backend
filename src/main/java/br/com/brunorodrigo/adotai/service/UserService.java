@@ -6,6 +6,7 @@ import br.com.brunorodrigo.adotai.entity.User;
 import br.com.brunorodrigo.adotai.exceptions.UserException;
 import br.com.brunorodrigo.adotai.repository.RoleRepository;
 import br.com.brunorodrigo.adotai.repository.UserRepository;
+import br.com.brunorodrigo.adotai.utils.ConstantUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +31,7 @@ public class UserService {
         User userByEmail = userRepository.findByEmail(userDto.getEmail());
 
         if(userByUsername != null || userByEmail != null) {
-            throw new UserException("Usuário ou email já cadastrado");
+            throw new UserException(ConstantUtils.USER_ALREADY_REGISTRED);
         }
 
         userDto.setPassword(passwordEncoder

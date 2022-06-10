@@ -7,21 +7,26 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+import static br.com.brunorodrigo.adotai.utils.ConstantUtils.VALIDATION_USER_EMAIL_IS_INVALID;
+import static br.com.brunorodrigo.adotai.utils.ConstantUtils.VALIDATION_USER_NAME_IS_REQUIRED;
+import static br.com.brunorodrigo.adotai.utils.ConstantUtils.VALIDATION_USER_PASSWORD_INCORRECT;
+import static br.com.brunorodrigo.adotai.utils.ConstantUtils.VALIDATION_USER_USERNAME_IS_REQUIRED;
+
 @Data
 @AllArgsConstructor
 public class UserDTO {
 
-    @NotEmpty(message = "Usuário é obrigatório.")
+    @NotEmpty(message = VALIDATION_USER_USERNAME_IS_REQUIRED)
     private String username;
 
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "Senha inválida. A Senha deve conter pelo menos 8 caracteres, " +
-            "1 letra maiscula, 1 letra minuscula e 1 caracter especial")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+            message = VALIDATION_USER_PASSWORD_INCORRECT)
     private String password;
 
-    @NotEmpty(message = "Nome do usuário é obrigatório.")
+    @NotEmpty(message = VALIDATION_USER_NAME_IS_REQUIRED)
     private String name;
 
-    @NotEmpty(message = "O endereço de e-mail é inválido")
-    @Email(message = "O endereço de e-mail é inválido")
+    @NotEmpty(message = VALIDATION_USER_EMAIL_IS_INVALID)
+    @Email(message = VALIDATION_USER_EMAIL_IS_INVALID)
     private String email;
 }
